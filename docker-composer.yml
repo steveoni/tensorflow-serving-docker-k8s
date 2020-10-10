@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  server:
+    image: tensorflow/serving
+    volumes:
+      - type: bind
+        source: /home/oni/Documents/building-machine-learning-pipelines-master/saved_models
+        target: /saved_models/1597001936
+    ports:
+      - '8501:8501'
+    environment:
+        MODEL_NAME: 1597001936
+        MODEL_BASE_PATH: /saved_models
+
+   
