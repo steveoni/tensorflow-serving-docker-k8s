@@ -11,6 +11,7 @@ services:
         MODEL_BASE_PATH: /saved_models/
 
   web:
+    image: steveoni/tftest
     build:
         context: ./flask_app
         dockerfile: Dockerfile.dev

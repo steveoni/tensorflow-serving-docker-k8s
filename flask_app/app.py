@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 def get_rest_request(text, model_name="model"):
-    url = "http://server:8501/v1/models/{}:predict".format(model_name)
+    url = "http://tf-cluster-ip-service:8501/v1/models/{}:predict".format(model_name)
     payload = {"instances": [text]}
     response = requests.post(url=url, json=payload)
     return response
@@ -19,7 +19,7 @@ def home():
         inp1 = int(request.form["inp1"])
         inp2 = int(request.form["inp2"])
 
-        response = get_rest_request([inp1,inp2], "1597001936")
+        response = get_rest_request([inp1,inp2], "1602624873")
 
         resp = response.json()
         flash(f"obtained {inp1} and {inp2} have a prediction of {resp['predictions']}", 'success')

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tf-kube-pod
+  labels:
+    component: server
+spec:
+  containers:
+    - name: tf-kube
+      image: steveoni/tfupdate:1.1
+      ports:
+        - containerPort: 8501
+      env:
+        - name: MODEL_NAME
+          value: "1602624873"
+        - name: MODEL_BASE_PATH
+          value: /saved_models/
