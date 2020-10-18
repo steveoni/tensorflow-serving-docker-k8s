@@ -3,19 +3,17 @@ services:
   server:
     image: tensorflow/serving
     volumes:
-      - ./saved_models:/saved_models/1597001936
+      - ./saved_models:/saved_models/1602624873
     ports:
       - '8501:8501'
     environment:
-        MODEL_NAME: 1597001936
+        MODEL_NAME: 1602624873
         MODEL_BASE_PATH: /saved_models/
 
   web:
-    image: steveoni/tftest
+    image: flaskweb2
     build:
         context: ./flask_app
         dockerfile: Dockerfile.dev
-    volumes:
-      - ./flask_app:/app
     ports:
       - '8080:8080'

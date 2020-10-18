@@ -5,10 +5,11 @@ from os import environ
 app = Flask(__name__)
 
 
-def get_rest_request(text, model_name="model"):
-    url = "http://tf-cluster-ip-service:8501/v1/models/{}:predict".format(model_name)
-    payload = {"instances": [text]}
-    response = requests.post(url=url, json=payload)
+def tfserving_request(req_input, model_name):
+    # url = "http://tf-cluster-ip-service:8501/v1/models/{}:predict".format(model_name)
+    url = f"http://server:8501/v1/models/{model_name}:predict"
+    input_request = {"instances": [req_input]}
+    response = requests.post(url=url, json=input_request)
     return response
 
 @app.route("/home",methods=["GET","POST"])
@@ -19,7 +20,7 @@ def home():
         inp1 = int(request.form["inp1"])
         inp2 = int(request.form["inp2"])
 
-        response = get_rest_request([inp1,inp2], "1602624873")
+        response = tfserving_request([inp1,inp2], "1602624873")
 
         resp = response.json()
         flash(f"obtained {inp1} and {inp2} have a prediction of {resp['predictions']}", 'success')
