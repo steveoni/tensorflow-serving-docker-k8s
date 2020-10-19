@@ -6,8 +6,7 @@ app = Flask(__name__)
 
 
 def tfserving_request(req_input, model_name):
-    # url = "http://tf-cluster-ip-service:8501/v1/models/{}:predict".format(model_name)
-    url = f"http://server:8501/v1/models/{model_name}:predict"
+    url = "http://tf-cluster-ip-service:8501/v1/models/{}:predict".format(model_name)
     input_request = {"instances": [req_input]}
     response = requests.post(url=url, json=input_request)
     return response

@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: web
-          image: steveoni/tfweb:1.0
+          image: steveoni/tfweb:1.2
           ports:
             - containerPort: 8080
